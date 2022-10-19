@@ -27,5 +27,5 @@ Route::middleware('auth')
     ->namespace('Admin')    //questo mi da il prefisso per arrivare al Controller di riferimento Admin\HomeController
     ->group(function () {
 
-        Route::get('/home', 'HomeController@index');
+        Route::get('/home', 'HomeController@index')->name('home');
     });
