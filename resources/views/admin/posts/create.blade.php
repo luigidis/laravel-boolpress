@@ -8,9 +8,9 @@
             <h1>Crea Nuovo Post</h1>
         </div>
             
-        <div class="col-4 d-flex justify-content-end align-items-center">
+        {{-- <div class="col-4 d-flex justify-content-end align-items-center">
            
-        </div>
+        </div> --}}
     </div>
 </div>
 
@@ -33,7 +33,7 @@
                     <label for="content">Contenuto</label>
                     <textarea class="form-control" id="content" name="content" rows="20">{{ old('content') }}</textarea>
                   </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Salva!</button>
               </form>
         </div>
     </div>

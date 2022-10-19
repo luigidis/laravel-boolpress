@@ -19,6 +19,7 @@
 
             <input type="submit" value="Elimina" class="btn btn-danger btn-sm ml-2">
             </form>
+            <a href="{{ route('admin.posts.edit', $post) }}" type="button" class="btn btn-warning btn-sm ml-2">Modifica Post</a>
         </div>
     </div>
 </div>
