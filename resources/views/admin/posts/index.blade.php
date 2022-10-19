@@ -22,19 +22,29 @@
                             <th scope="col">Title</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Created at</th>
-                            <th></th>
+                            <th colspan="2"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($posts as $post)
                             <tr>
-                                <th scope="row">{{$post->id}}</th>
+                                <th scope="row">{{ $post->id }}</th>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->slug }}</td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>
-                                    <a href="{{ route('admin.posts.show', $post) }}" type="button" class="btn btn-primary btn-sm">Vedi Post</a>
+                                    <a href="{{ route('admin.posts.show', $post) }}" type="button"
+                                        class="btn btn-primary btn-sm">Vedi Post</a>
                                 </td>
+                                <td>
+                                    <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <input type="submit" value="Elimina" class="btn btn-danger btn-sm ml-2">
+                                    </form>
+                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -43,5 +53,3 @@
         </div>
     </div>
 @endsection
-
-

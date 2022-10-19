@@ -13,6 +13,12 @@
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
             <a href="{{ route('admin.posts.create') }}" type="button" class="btn btn-primary btn-sm">Nuovo Post</a>
+            <form action="{{ route('admin.posts.destroy', $post) }}"  method="POST">
+            @csrf
+            @method('DELETE')
+
+            <input type="submit" value="Elimina" class="btn btn-danger btn-sm ml-2">
+            </form>
         </div>
     </div>
 </div>
