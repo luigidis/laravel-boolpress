@@ -96,6 +96,7 @@ class PostController extends Controller
         $params = $request->validate([
             'title' => 'required|max:255|min:5',
             'content' => 'required',
+            'category_id' => 'nullable|exists:App\Category,id'
         ]);
 
         $post->update($params);
