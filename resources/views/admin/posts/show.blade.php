@@ -6,6 +6,9 @@
         <div class="col-8">
             <h1>{{$post->title}}</h1>
             <h4>{{ $post->slug }}</h4>
+            @if($post->category)
+            <p><strong>Categoria</strong>{{ $post->categor->name}}</p>
+            @endif
             <ul class="d-flex">
                 <li> {{ $post->created_at }}</li>
                 <li class="ml-5">{{ $post->updated_at }}</li>
