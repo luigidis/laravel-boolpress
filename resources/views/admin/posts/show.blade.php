@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
+            @if($post->cover)
+                <div class="col-12">
+                    <img src="{{ asset('storage/'.$post->cover)}}" width="300" alt="">
+                </div>
+            @endif
             <div class="col-8">
                 <h1>{{ $post->title }}</h1>
                 <h4>{{ $post->slug }}</h4>
@@ -36,14 +41,14 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    {{-- <div class="container">
         <div class="row">
             <div class="col-12">
                 <p>
                     {{ $post->content }}
-                    {{-- Se fosse stato in html  si sarebbe scritto così {!! $post->content !!} --}}
+                    Se fosse stato in html  si sarebbe scritto così {!! $post->content !!}
                 </p>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
