@@ -75,7 +75,7 @@ class PostController extends Controller
             
         }
 
-        Mail::to('ciccio.pasticcio@gmail.com')->send(new SendTrapMail());
+        Mail::to('ciccio.pasticcio@gmail.com')->send(new SendTrapMail($post));
 
         return redirect()->route('admin.posts.show', $post);
 
