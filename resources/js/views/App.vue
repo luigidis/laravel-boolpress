@@ -5,6 +5,18 @@
         <div class="grid grid-cols-3 gap-8">
             <PostCard v-for="post in posts" :key="post.id" :post="post"/>
         </div>
+
+        <div class="container pt-12">
+            <ul class="flex gap-6 justify-center">
+                <li @click="fetchPosts(page)"
+                    :class="{
+                    'w-8 h-8 flex items-center justify-center rounded-full' : true,
+                    'bg-amber-400' : page === currentPage,
+                    'bg-grey-100 cursor-pointer hover:bg-amber-300' : page !== currentPage
+                }"
+                    v-for="page in lastPage" :key="page"> {{ page }}</li>
+            </ul>
+        </div>
              
     </div>
 </template>
@@ -19,15 +31,27 @@
         data(){
             return {
                 title: 'ciao',
-                posts: []
+                posts: [],
+                currentPage: 1,
+                lastPage: 0,
+                total: 0
             }
         },
         methods: {
-            fetchPosts() {
-                axios.get('/api/posts').then((res) => {
+            fetchPosts(page = 1) {
+                axios.get('/api/posts', {
+                    params: {
+                        page: page
+                    }
+                }).then((res) => {
                     console.log(res.data)
-                    const { posts } = res.data
-                    this.posts = posts
+                    const { data, current_page, last_page, total } = res.data.result
+                    this.posts = data,
+                    this.currentPage = current_page,
+                    this.lastPage = last_page,
+                    this.total = total
+                    // const { posts } = res.data
+                    // this.posts = posts
                 })
             }
         },

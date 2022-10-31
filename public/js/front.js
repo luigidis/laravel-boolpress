@@ -1937,16 +1937,30 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       title: 'ciao',
-      posts: []
+      posts: [],
+      currentPage: 1,
+      lastPage: 0,
+      total: 0
     };
   },
   methods: {
     fetchPosts: function fetchPosts() {
       var _this = this;
-      axios.get('/api/posts').then(function (res) {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('/api/posts', {
+        params: {
+          page: page
+        }
+      }).then(function (res) {
         console.log(res.data);
-        var posts = res.data.posts;
-        _this.posts = posts;
+        var _res$data$result = res.data.result,
+          data = _res$data$result.data,
+          current_page = _res$data$result.current_page,
+          last_page = _res$data$result.last_page,
+          total = _res$data$result.total;
+        _this.posts = data, _this.currentPage = current_page, _this.lastPage = last_page, _this.total = total;
+        // const { posts } = res.data
+        // this.posts = posts
       });
     }
   },
@@ -1989,7 +2003,7 @@ var render = function render() {
       key: tag.id,
       staticClass: "rounded-full hover:bg-amber-400 bg-gray-200 px-2 py-1 text-xs"
     }, [_vm._v("\n                " + _vm._s(tag.name) + "\n            ")]);
-  }), 0), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.created_at))])])]);
+  }), 0), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.post.date))])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -2020,7 +2034,25 @@ var render = function render() {
         post: post
       }
     });
-  }), 1)]);
+  }), 1), _vm._v(" "), _c("div", {
+    staticClass: "container pt-12"
+  }, [_c("ul", {
+    staticClass: "flex gap-6 justify-center"
+  }, _vm._l(_vm.lastPage, function (page) {
+    return _c("li", {
+      key: page,
+      "class": {
+        "w-8 h-8 flex items-center justify-center rounded-full": true,
+        "bg-amber-400": page === _vm.currentPage,
+        "bg-grey-100 cursor-pointer hover:bg-amber-300": page !== _vm.currentPage
+      },
+      on: {
+        click: function click($event) {
+          return _vm.fetchPosts(page);
+        }
+      }
+    }, [_vm._v(" " + _vm._s(page))]);
+  }), 0)])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;

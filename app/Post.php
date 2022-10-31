@@ -24,4 +24,10 @@ class Post extends Model
         return $this->belongsToMany('App\Tag');
         
     }
+
+    public function getDateAttribute() {
+        return $this->created_at->format('d/m/Y');
+    }
+
+    protected $appends = ['date'];
 }
