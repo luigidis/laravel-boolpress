@@ -2038,7 +2038,17 @@ var render = function render() {
     staticClass: "container pt-12"
   }, [_c("ul", {
     staticClass: "flex gap-6 justify-center"
-  }, _vm._l(_vm.lastPage, function (page) {
+  }, [_vm.currentPage !== 1 ? _c("li", {
+    "class": {
+      "w-8 h-8 flex items-center justify-center rounded-full": true,
+      "bg-grey-100 cursor-pointer hover:bg-amber-300": true
+    },
+    on: {
+      click: function click($event) {
+        return _vm.fetchPosts(1);
+      }
+    }
+  }, [_vm._v(" ... ")]) : _vm._e(), _vm._v(" "), _vm._l(_vm.lastPage, function (page) {
     return _c("li", {
       key: page,
       "class": {
@@ -2052,7 +2062,17 @@ var render = function render() {
         }
       }
     }, [_vm._v(" " + _vm._s(page))]);
-  }), 0)])]);
+  }), _vm._v(" "), _vm.currentPage !== _vm.lastPage ? _c("li", {
+    "class": {
+      "w-8 h-8 flex items-center justify-center rounded-full": true,
+      "bg-grey-100 cursor-pointer hover:bg-amber-300": true
+    },
+    on: {
+      click: function click($event) {
+        return _vm.fetchPosts(_vm.lastPage);
+      }
+    }
+  }, [_vm._v(" ... ")]) : _vm._e()], 2)])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
