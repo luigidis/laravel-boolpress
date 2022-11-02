@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="grid grid-cols-3 gap-8">
-            <PostCard v-for="post in posts" :key="post.id" :post="post" />
+            <router-link :to="{ name: 'post.show', params: { slug: post.slug }}" v-for="post in posts" :key="post.id">
+                <PostCard :post="post" />
+            </router-link>
         </div>
 
         <div class="container pt-12">
@@ -24,14 +26,14 @@
             </ul>
         </div>
     </div>
-    
+
 </template>
 
 <script>
 import PostCard from '../components/PostCard.vue'
 
-    export default {
-        components: {
+export default {
+    components: {
         PostCard
     },
     data() {
@@ -64,7 +66,7 @@ import PostCard from '../components/PostCard.vue'
     beforeMount() {
         this.fetchPosts()
     },
-    }
+}
 </script>
 
 <style lang="scss" scoped>
