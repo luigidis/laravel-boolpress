@@ -13,7 +13,6 @@
                     'bg-grey-100 cursor-pointer hover:bg-amber-300': true
                 }"> ... </li>
 
-
                 <li @click="fetchPosts(page)" :class="{
                     'w-8 h-8 flex items-center justify-center rounded-full': true,
                     'bg-amber-400': page === currentPage,
@@ -26,9 +25,10 @@
                 }"> ... </li>
             </ul>
         </div>
-
     </div>
 </template>
+
+
 
 <script>
 import PostCard from '../components/PostCard.vue'
@@ -53,7 +53,7 @@ export default {
                     page: page
                 }
             }).then((res) => {
-                console.log(res.data)
+                // console.log(res.data)
                 const { data, current_page, last_page, total } = res.data.result
                 this.posts = data,
                     this.currentPage = current_page,
