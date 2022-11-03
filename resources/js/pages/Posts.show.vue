@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="post">
         <section>
             <img v-if="post.cover" :src="`/image/${post.cover}`" alt="" class="h-full w-full object-fit object-center">
             
